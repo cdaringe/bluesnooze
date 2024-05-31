@@ -8,7 +8,6 @@
 
 import Cocoa
 import IOBluetooth
-import LaunchAtLogin
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -28,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Click handlers
 
     @IBAction func launchAtLoginClicked(_ sender: NSMenuItem) {
-        LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
+//        LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
         setLaunchAtLoginState()
     }
 
@@ -63,10 +62,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: UI state
 
     private func initStatusItem() {
-        if UserDefaults.standard.bool(forKey: "hideIcon") {
+        let isHidingIcon = UserDefaults.standard.bool(forKey: "hideIcon")
+        if isHidingIcon {
             return
         }
-
         if let icon = NSImage(named: "bluesnooze") {
             icon.isTemplate = true
             statusItem.button?.image = icon
@@ -77,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setLaunchAtLoginState() {
-        let state = LaunchAtLogin.isEnabled ? NSControl.StateValue.on : NSControl.StateValue.off
-        launchAtLoginMenuItem.state = state
+//        let state = LaunchAtLogin.isEnabled ? NSControl.StateValue.on : NSControl.StateValue.off
+//        launchAtLoginMenuItem.state = state
     }
 }
